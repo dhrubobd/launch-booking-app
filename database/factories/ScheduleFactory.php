@@ -18,11 +18,12 @@ class ScheduleFactory extends Factory
      */
     public function definition(): array
     {
+        $departure = now()->addDays(fake()->numberBetween(1, 30));
         return [
             'vessel_id' => Vessel::inRandomOrder()->first()->id,
             'route_id' => Route::inRandomOrder()->first()->id,
-            'departure_time' => now()->addDays(fake()->numberBetween(1, 30)),
-            'arrival_time' => now()->addDays(fake()->numberBetween(1, 30))->addHours(2),
+            'departure_time' => $departure,
+            'arrival_time' => (clone $departure)->addHours(fake()->numberBetween(1, 6)),
             'status' => 'scheduled',
         ];
     }
