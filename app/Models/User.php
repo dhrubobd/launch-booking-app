@@ -49,11 +49,17 @@ class User extends Authenticatable
         ];
     }
 
-    public function tickets() {
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class);
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(Notification::class);
+    }
+    public function vessels()
+    {
+        return $this->hasMany(Vessel::class, 'admin_id');
     }
 }

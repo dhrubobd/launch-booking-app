@@ -12,14 +12,23 @@ class Vessel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'code', 'seat_layout'
+        'name',
+        'code',
+        'seat_layout'
     ];
 
-    public function schedules() {
+    public function schedules()
+    {
         return $this->hasMany(Schedule::class);
     }
 
-    public function seats() {
+    public function seats()
+    {
         return $this->hasMany(Seat::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
     }
 }

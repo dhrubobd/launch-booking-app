@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('vessels', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade'); // vessel owner
             $table->string('name');
             $table->string('code')->unique();
             $table->string('seat_layout')->nullable();
